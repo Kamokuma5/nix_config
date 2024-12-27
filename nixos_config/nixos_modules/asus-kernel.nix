@@ -18,6 +18,12 @@
             version = "6.12.6-arch1";
             modDirVersion = version;
 
+            patch_dir = fetchgit {
+              url = "https://aur.archlinux.org/linux-g14.git";
+              rev = "efd1a86d1962eb793cfc7a01b68918a20a033e50";
+              hash = "sha256-ihE/BHvx2bI5LwOJyvzvvARIKzvO0Spz4bS+PlK4PEM=";
+            };
+
             src = fetchzip {
               url = "https://github.com/archlinux/linux/archive/refs/tags/v${version}.tar.gz";
               hash = "sha256-vl4KjeDVdV8cW2oysECSs2pOO1MyNcVkIos+kb7Sj6A=";
@@ -28,18 +34,9 @@
                   url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.12/asus-patch-series.patch";
                   hash = "sha256-VcGEoZBQUqPAd+ktqncIVtCcSkje5gpF4Qh8u0kRV2E=";
                 };
+              };
 
-                #patch_dir = fetchzip {
-                #  url = "https://aur.archlinux.org/cgit/aur.git/snapshot/linux-g14.tar.gz";
-                #  hash = "sha256-/tM3n9huz1MTE6KKtTCBglBMBGGL/GOHi5ZSUag4zXA=";
-                #};
-
-                patch_dir = fetchgit {
-                  url = "https://aur.archlinux.org/linux-g14.git";
-                  rev = "efd1a86d1962eb793cfc7a01b68918a20a033e50";
-                  hash = "sha256-ihE/BHvx2bI5LwOJyvzvvARIKzvO0Spz4bS+PlK4PEM=";
-                };
-              }; [
+              [
                 {
                   name = "0000-asus-patch-series.patch";
                   patch = "${patch_series}";
@@ -82,7 +79,7 @@
                 }
               ];
 
-            # extraConfig = "${patch_dir}/config";
+            defconfig = "${patch_dir}/config";
           }
           // (args.argsOverride or { })
         );
