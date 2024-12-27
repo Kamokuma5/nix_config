@@ -16,6 +16,7 @@
       tmux
       fastfetch
       vesktop
+      vscode
     ];
 
     username = "duck";
