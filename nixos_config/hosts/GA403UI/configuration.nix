@@ -10,6 +10,7 @@ in {
       ../../nixos_modules/asus-kernel.nix
       ../../nixos_modules/nvidia.nix
       ./hardware-configuration.nix
+      ../../nixos_modules/de.nix
     ];
 
   # Bootloader.
@@ -71,12 +72,7 @@ in {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    jack.enable = true;
   };
 
   # Bluetooth
@@ -108,9 +104,6 @@ in {
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  #programs.hyprland.enable = true;
-  #programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
   environment.systemPackages = with pkgs; [
     neovim
