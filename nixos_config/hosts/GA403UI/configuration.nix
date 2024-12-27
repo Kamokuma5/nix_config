@@ -1,6 +1,10 @@
 { config, pkgs, lib, inputs, ... }:
 
-{
+let
+  host_name = "ga403ui";
+  user_name = "duck";
+  user_locale = "en_US.UTF-8";
+in {
   imports =
     [
       ../../nixos_modules/asus-kernel.nix
@@ -14,7 +18,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "${host_name}";
 
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -26,18 +30,18 @@
   time.timeZone = "America/New_York";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "${user_locale}";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+    LC_ADDRESS = "${user_locale}";
+    LC_IDENTIFICATION = "${user_locale}";
+    LC_MEASUREMENT = "${user_locale}";
+    LC_MONETARY = "${user_locale}";
+    LC_NAME = "${user_locale}";
+    LC_NUMERIC = "${user_locale}";
+    LC_PAPER = "${user_locale}";
+    LC_TELEPHONE = "${user_locale}";
+    LC_TIME = "${user_locale}";
   };
 
   # Enable the X11 windowing system.
@@ -57,7 +61,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -89,25 +93,18 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.duck = {
+  users.users.${user_name} = {
     isNormalUser = true;
-    description = "duck";
+    description = "${user_name}";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
     ];
   };
 
-#   home-manager = {
-#     extraSpecialArgs = { inherit inputs; };
-#     users = {
-#       "duck" = import ./home.nix;
-#     };
-#   };
-
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "duck";
+  services.displayManager.autoLogin.user = "${user_name}";
 
   # Install firefox.
   programs.firefox.enable = true;
