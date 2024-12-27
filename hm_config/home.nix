@@ -30,12 +30,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  #imports =
-  # [
-  #    ./hm_modules/git.nix
-  # ];
-
-  #git.enable = true;
-
 }
