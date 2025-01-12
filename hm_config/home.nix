@@ -7,6 +7,8 @@
 
   home = {
     packages = with pkgs; [
+      neovim
+      wget
       eza
       dust
       fuc
@@ -17,6 +19,7 @@
       fastfetch
       vesktop
       vscode
+      youtube-music
     ];
 
     username = "duck";
