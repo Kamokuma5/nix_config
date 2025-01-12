@@ -3,6 +3,7 @@
 
   inputs = {
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -14,6 +15,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/GA403UI/configuration.nix
+        {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
       ];
     };
   };

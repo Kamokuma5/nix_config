@@ -10,7 +10,8 @@ in {
       ../../nixos_modules/asus-kernel.nix
       ../../nixos_modules/nvidia.nix
       ./hardware-configuration.nix
-      ../../nixos_modules/de.nix
+      ../../nixos_modules/de_kde.nix
+      ../../nixos_modules/de_hyprland.nix
     ];
 
   # Bootloader.
@@ -45,16 +46,6 @@ in {
     LC_TIME = "${user_locale}";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = false;
-
-  services.displayManager.sddm.wayland.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -83,10 +74,6 @@ in {
       Experimental = true;
     };
   };
-  #services.blueman.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user_name} = {
@@ -102,12 +89,10 @@ in {
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "${user_name}";
 
-  # Install firefox.
+  # Default programs for all configs
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
-    neovim
-    wget
     git
     home-manager
   ];

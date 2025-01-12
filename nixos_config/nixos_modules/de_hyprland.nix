@@ -6,21 +6,20 @@
 }:
 
 {
-  # KDE Plasma
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
+  # hint Electron apps to use Wayland:
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  
   # Hyprland
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
 
-  # hint Electron apps to use Wayland:
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
+  # Hyprland programs
   environment.systemPackages = [
     pkgs.kitty # required for the default Hyprland config
+    pkgs.foot
+    pkgs.hyprpanel
     pkgs.waybar
     pkgs.networkmanagerapplet
     pkgs.hyprshot
