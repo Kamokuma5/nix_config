@@ -98,7 +98,7 @@ in {
   ];
 
   fonts.packages = with pkgs; [
-    cascadia-code
+    nerd-fonts.caskaydia-cove
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
