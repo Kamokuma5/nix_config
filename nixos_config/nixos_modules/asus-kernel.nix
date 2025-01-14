@@ -15,24 +15,24 @@
         buildLinux (
           args
           // rec {
-            version = "6.12.6-arch1";
+            version = "6.12.9-arch1";
             modDirVersion = version;
 
             patch_dir = fetchgit {
               url = "https://aur.archlinux.org/linux-g14.git";
-              rev = "efd1a86d1962eb793cfc7a01b68918a20a033e50";
-              hash = "sha256-ihE/BHvx2bI5LwOJyvzvvARIKzvO0Spz4bS+PlK4PEM=";
+              rev = "e812064c04e14586e68df68a8000c5ebefca666c";
+              hash = "sha256-3ScSiTDpgpFVeybH6W/E6H7Bc5ECFMSxzs/8CIYpt/8=";
             };
 
             src = fetchzip {
               url = "https://github.com/archlinux/linux/archive/refs/tags/v${version}.tar.gz";
-              hash = "sha256-vl4KjeDVdV8cW2oysECSs2pOO1MyNcVkIos+kb7Sj6A=";
+              hash = "sha256-D1RXyvRj/x24uibdXvgN33PlDlgyXIgGmYfU+fUYaWE=";
             };
             kernelPatches =
               with {
                 patch_series = fetchurl {
                   url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.12/asus-patch-series.patch";
-                  hash = "sha256-VcGEoZBQUqPAd+ktqncIVtCcSkje5gpF4Qh8u0kRV2E=";
+                  hash = "sha256-Sroo97hNAPy3NEr6z0TCTCNNqPv0A2mDVnjAyq7GoWA=";
                 };
               };
 
