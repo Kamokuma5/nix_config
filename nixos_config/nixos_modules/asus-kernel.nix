@@ -15,18 +15,18 @@
         buildLinux (
           args
           // rec {
-            version = "6.12.9-arch1";
+            version = "6.12.10-arch1";
             modDirVersion = version;
 
             patch_dir = fetchgit {
               url = "https://aur.archlinux.org/linux-g14.git";
-              rev = "e812064c04e14586e68df68a8000c5ebefca666c";
-              hash = "sha256-3ScSiTDpgpFVeybH6W/E6H7Bc5ECFMSxzs/8CIYpt/8=";
+              rev = "17da925db82998b79144053b7a518656b0d51f4a";
+              hash = "sha256-uSZzsetlXfJXO38dgIS29VVBuBexfKh7vfI862r95GA=";
             };
 
             src = fetchzip {
               url = "https://github.com/archlinux/linux/archive/refs/tags/v${version}.tar.gz";
-              hash = "sha256-D1RXyvRj/x24uibdXvgN33PlDlgyXIgGmYfU+fUYaWE=";
+              hash = "sha256-2rP0I2dN4AOjNaOgMeDzZJw881EYYVUMdagR8D2ds+k=";
             };
             kernelPatches =
               with {
