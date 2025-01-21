@@ -12,6 +12,8 @@ in {
       ./hardware-configuration.nix
       ../../nixos_modules/de_kde.nix
       ../../nixos_modules/de_hyprland.nix
+      ../../nixos_modules/docker.nix
+      ../../nixos_modules/ollama.nix
     ];
 
   # Bootloader.
@@ -79,7 +81,7 @@ in {
   users.users.${user_name} = {
     isNormalUser = true;
     description = "${user_name}";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
     ];
