@@ -10,7 +10,7 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Use iGPU to render hyprland
-  environment.sessionVariables.AQ_DRM_DEVICES = "/dev/dri/card1";
+  # environment.sessionVariables.AQ_DRM_DEVICES = "/dev/dri/card1";
   
   # Hyprland
   programs.hyprland = {
