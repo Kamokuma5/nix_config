@@ -11,7 +11,7 @@
       wget
       eza
       dust
-      fuc
+      # fuc
       zoxide
       fzf
       zellij
@@ -20,6 +20,8 @@
       vesktop
       vscode
       youtube-music
+      nvidia-container-toolkit
+      python311
     ];
 
     username = "duck";
