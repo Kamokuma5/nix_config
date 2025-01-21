@@ -8,6 +8,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -19,7 +21,10 @@
     homeConfigurations = {
       "duck" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [ 
+          ./home.nix
+          {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
+        ];
       };
     };
   };

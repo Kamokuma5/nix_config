@@ -20,21 +20,6 @@
 
   # Hyprland programs
   environment.systemPackages = [
-    pkgs.brightnessctl    # Needed for brightness control
     pkgs.kitty            # required for the default Hyprland config
-    pkgs.foot
-    pkgs.hyprpanel
-    pkgs.networkmanagerapplet
-    pkgs.hyprshot
-    pkgs.rofi-wayland
-    pkgs.rofi-bluetooth
-
-    pkgs.libnotify
-    pkgs.hypridle
-    
-    pkgs.hyprlock
-    pkgs.hyprnotify
-    
-    pkgs.waybar
   ];
 }

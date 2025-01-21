@@ -7,6 +7,21 @@
 
   home = {
     packages = with pkgs; [
+      # Hyprland
+      brightnessctl    # Needed for screen brightness control
+      hyprpanel
+      networkmanagerapplet
+      hyprshot
+      rofi-wayland
+      rofi-bluetooth
+      libnotify
+      hypridle
+      hyprlock
+      hyprnotify
+      waybar
+
+      # CLI Tools
+      foot
       neovim
       wget
       eza
@@ -17,9 +32,13 @@
       zellij
       tmux
       fastfetch
+
+      # Apps
       vesktop
       vscode
       youtube-music
+      
+      # LLMs
       nvidia-container-toolkit
       python311
     ];
