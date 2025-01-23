@@ -16,19 +16,22 @@ in {
       ../../nixos_modules/ollama.nix
     ];
 
+  nixpkgs.config.allowUnfree = true;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nixpkgs.config.allowUnfree = true;
-
-  networking.hostName = "${host_name}";
-
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Enable networking
+  # Networking
+  networking.hostName = "${host_name}";
   networking.networkmanager.enable = true;
+
+  # VPN
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
