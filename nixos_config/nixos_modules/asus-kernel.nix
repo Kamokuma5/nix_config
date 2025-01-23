@@ -32,7 +32,7 @@
               with {
                 patch_series = fetchurl {
                   url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/rog-6.12/asus-patch-series.patch";
-                  hash = "sha256-Sroo97hNAPy3NEr6z0TCTCNNqPv0A2mDVnjAyq7GoWA=";
+                  hash = "sha256-ik68C107YsjmZPZGu2AL2fWchaKitl5DuxhcuJnvQgo=";
                 };
               };
 
@@ -88,11 +88,23 @@
     pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor linux_g14);
 
   # ASUS Specific Software
-  services.supergfxd.enable = true;
   services = {
+    supergfxd.enable = true;
     asusd = {
       enable = true;
       enableUserService = true;
     };
   };
+
+  nixpkgs.overlays = [
+    # Build newer  of asusctl
+    (final: prev:{
+      src = prev.fetchFromGitLab {
+        owner = "asus-linux";
+        repo = "asusctl";
+        rev = "6.1.0-rc7";
+        hash = "";
+      };
+    })
+  ];
 }
