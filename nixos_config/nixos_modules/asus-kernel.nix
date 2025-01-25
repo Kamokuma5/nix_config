@@ -97,7 +97,7 @@
   };
 
   nixpkgs.overlays = [
-    # Build newer  of asusctl
+    # Build newer of asusctl
     (final: prev:{
       src = prev.fetchFromGitLab {
         owner = "asus-linux";
