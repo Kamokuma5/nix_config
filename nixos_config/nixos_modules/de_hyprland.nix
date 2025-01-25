@@ -10,7 +10,7 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Use iGPU to render hyprland
-  # environment.sessionVariables.AQ_DRM_DEVICES = "/dev/dri/card1";
+  environment.sessionVariables.AQ_DRM_DEVICES = "/dev/dri/card0";
   
   # Hyprland
   programs.hyprland = {
@@ -22,4 +22,15 @@
   environment.systemPackages = [
     pkgs.kitty            # required for the default Hyprland config
   ];
+
+  # Thunar File Manager
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
 }
