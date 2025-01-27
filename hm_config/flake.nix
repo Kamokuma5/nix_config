@@ -2,7 +2,13 @@
   description = "A very basic flake";
 
   inputs = {
-     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # Not in repo. If you make change to this repo, it might not make it to the nix store.
+    nix_secrets = {
+      url = "path:/home/duck/nix_secrets/";
+      flake = false;
+    };
+
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -10,20 +16,30 @@
     };
 
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpanel.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprpanel, ... }@inputs:
   let
     system = "x86_64-linux";
-#     pkgs = nixpkgs.legacyPackages.${system};
-    pkgs = import nixpkgs { system = "x86_64-linux"; config.allowUnfree = true; };
+    pkgs = nixpkgs.legacyPackages.${system};
   in {
     homeConfigurations = {
       "duck" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.hyprpanel.overlay
+          ];
+        };
+        
+        extraSpecialArgs = {
+          inherit system;
+          inherit inputs;
+        };
+  
         modules = [ 
           ./home.nix
-          {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         ];
       };
     };

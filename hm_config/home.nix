@@ -1,42 +1,43 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, inputs, ... }:
+let
+  nix_secrets = import "${inputs.nix_secrets}/secrets.nix";
+in
 {
+  imports = [
+    inputs.hyprpanel.homeManagerModules.hyprpanel
+    ./hm_modules/zsh.nix
+    ./hm_modules/hyprland.nix
+  ];
+
   programs = {
     git = (import ./hm_modules/git.nix { inherit pkgs; });
+    hyprpanel = (import ./hm_modules/hyprpanel.nix { inherit pkgs nix_secrets; });
   };
 
+  nixpkgs.config.allowUnfree = true;
   home = {
     packages = with pkgs; [
-      # Hyprland
-      brightnessctl    # Needed for screen brightness control
-      hyprpanel
-      networkmanagerapplet
-      hyprshot
-      rofi-wayland
-      rofi-bluetooth
-      libnotify
-      hypridle
-      hyprlock
-      hyprnotify
-      waybar
-
       # CLI Tools
       foot
       neovim
       wget
       eza
       dust
-      # fuc
       zoxide
       fzf
       zellij
       tmux
       fastfetch
+      btop
+      wezterm
+      yazi
 
       # Apps
       vesktop
       vscode
       youtube-music
+      microsoft-edge
+      mpv
       
       # LLMs
       nvidia-container-toolkit
