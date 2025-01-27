@@ -88,7 +88,11 @@ in {
     packages = with pkgs; [
       kdePackages.kate
     ];
+    shell = pkgs.zsh;
   };
+
+  # Set default shell to ZSH
+  programs.zsh.enable = true;
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = false;
