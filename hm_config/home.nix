@@ -38,6 +38,7 @@ in
       youtube-music
       microsoft-edge
       mpv
+      inputs.zen-browser.packages."${system}".twilight
       
       # LLMs
       nvidia-container-toolkit
