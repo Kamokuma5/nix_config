@@ -7,7 +7,7 @@ This repo contains 2 flakes for both NixOS and home-manager configs respectively
 `sudo nixos-rebuild switch --flake ~/nix_config/nixos_config#GA403UI --impure`
 
 ## How to build home-manager
-`home-manager switch --flake ~/nix_config/hm_config/#duck --refresh --impure`
+`home-manager switch --flake ~/nix_config/hm_config/#duck --impure`
 
 ## How to update
 ```
