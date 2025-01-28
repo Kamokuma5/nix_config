@@ -9,9 +9,9 @@ in
   layout = {
     "bar.layouts" = {
       "0" = {
-        left = ["dashboard" "hypridle"];
-        middle = ["cava" "workspaces" "media"];
-        right = ["systray" "bluetooth" "volume" "clock" "battery" "notifications"];
+        left = ["dashboard" "workspaces"];
+        middle = ["media"];
+        right = ["systray" "network" "bluetooth" "volume" "clock" "battery" "notifications" "hypridle"];
       };
     };
   };
