@@ -11,6 +11,7 @@ This repo contains 2 flakes for both NixOS and home-manager configs respectively
 
 ## How to update
 ```
+sudo nix-channel --update
 cd hm_config/
 nix flake update
 cd ../nixos_config
