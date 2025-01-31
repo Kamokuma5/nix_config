@@ -7,6 +7,7 @@ in
     inputs.hyprpanel.homeManagerModules.hyprpanel
     ./hm_modules/zsh.nix
     ./hm_modules/hyprland.nix
+    ./hm_modules/fastfetch.nix
   ];
 
   programs = {
