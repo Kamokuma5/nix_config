@@ -30,7 +30,6 @@ in
       tmux
       fastfetch
       btop
-      wezterm
       yazi
 
       # Apps
