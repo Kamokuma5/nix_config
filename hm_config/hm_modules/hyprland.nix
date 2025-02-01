@@ -2,10 +2,10 @@
 
 {
   home.packages = with pkgs; [
-    brightnessctl    # Needed for screen brightness control
+    brightnessctl         # screen brightness control
+    hyprshot              # Screenshots
     hyprpanel
     networkmanagerapplet
-    hyprshot
     rofi-wayland
     rofi-bluetooth
     libnotify
