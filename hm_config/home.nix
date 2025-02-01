@@ -49,10 +49,6 @@ in
     username = "duck";
     homeDirectory = "/home/duck";
 
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
-
     stateVersion = "24.11";
   };
 

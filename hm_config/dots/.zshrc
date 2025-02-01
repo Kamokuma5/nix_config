@@ -21,3 +21,5 @@ if [ -x "$(command -v exa)" ]; then
     alias ll='exa -lah'
     alias ls='exa --color=auto'    
 fi
+
+export EDITOR="nvim"
