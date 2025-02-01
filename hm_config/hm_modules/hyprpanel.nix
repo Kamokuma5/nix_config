@@ -10,8 +10,8 @@ in
     "bar.layouts" = {
       "0" = {
         left = ["dashboard" "workspaces"];
-        middle = ["media"];
-        right = ["systray" "network" "bluetooth" "volume" "clock" "battery" "notifications" "hypridle"];
+        middle = ["clock"];
+        right = ["systray" "network" "bluetooth" "volume" "battery" "notifications" "hypridle"];
       };
     };
   };
