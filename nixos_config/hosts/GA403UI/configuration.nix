@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, outputs, ... }:
 
 let
   host_name = "ga403ui";
@@ -6,15 +6,19 @@ let
   user_locale = "en_US.UTF-8";
 in {
   imports =
-    [
-      ../../nixos_modules/asus-kernel.nix
-      ../../nixos_modules/nvidia.nix
-      ./hardware-configuration.nix
-      ../../nixos_modules/de_kde.nix
-      ../../nixos_modules/de_hyprland.nix
-      ../../nixos_modules/docker.nix
-      ../../nixos_modules/ollama.nix
-    ];
+  [
+    ../../nixos_modules/asus-kernel.nix
+    ../../nixos_modules/nvidia.nix
+    ./hardware-configuration.nix
+    ../../nixos_modules/de_kde.nix
+    ../../nixos_modules/de_hyprland.nix
+    ../../nixos_modules/docker.nix
+    ../../nixos_modules/ollama.nix
+  ];
+
+  nixpkgs.overlays = [
+    outputs.overlays.modifications
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -61,7 +65,7 @@ in {
   services.printing.enable = false;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

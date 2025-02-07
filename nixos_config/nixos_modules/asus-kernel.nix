@@ -99,16 +99,4 @@
       enableUserService = true;
     };
   };
-
-  nixpkgs.overlays = [
-    # Build newer of asusctl
-    (final: prev:{
-      src = prev.fetchFromGitLab {
-        owner = "asus-linux";
-        repo = "asusctl";
-        rev = "6.1.0-rc7";
-        hash = "";
-      };
-    })
-  ];
 }
