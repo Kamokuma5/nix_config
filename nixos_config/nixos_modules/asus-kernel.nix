@@ -15,8 +15,8 @@
         buildLinux (
           args
           // rec {
-            version = "6.13-arch1";
-            modDirVersion = "6.13.0-arch1";
+            version = "6.13.1-arch2";
+            modDirVersion = version;
 
             patch_dir = fetchgit {
               url = "https://aur.archlinux.org/linux-g14.git";
@@ -26,7 +26,7 @@
 
             src = fetchzip {
               url = "https://github.com/archlinux/linux/archive/refs/tags/v${version}.tar.gz";
-              hash = "sha256-kZBqtH5Cwu6exVouU9XkiO/fiT3uKVrrrF1tQyAb1jg=";
+              hash = "sha256-oth96B9DX7uCERT4IdsB9JxpSXcOd4uRCOjZlzDa5u0=";
             };
             kernelPatches =
               with {
