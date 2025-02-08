@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, ... }:
+{ config, pkgs, lib, inputs, outputs, pkgs-bleeding-edge, ... }:
 
 let
   host_name = "ga403ui";
@@ -16,9 +16,9 @@ in {
     ../../nixos_modules/ollama.nix
   ];
 
-  nixpkgs.overlays = [
-    outputs.overlays.modifications
-  ];
+  # nixpkgs.overlays = [
+  #   outputs.overlays.modifications
+  # ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -113,9 +113,10 @@ in {
   # Default programs for all configs
   programs.firefox.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    git
-    home-manager
+  environment.systemPackages = [
+    pkgs.git
+    pkgs.home-manager
+    pkgs-bleeding-edge.asusctl
   ];
 
   fonts.packages = with pkgs; [
