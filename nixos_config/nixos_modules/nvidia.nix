@@ -15,6 +15,7 @@
     powerManagement.finegrained = true;
     open = false;
     nvidiaSettings = true;
+    dynamicBoost.enable = true;
 
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
       version = "570.86.16";
