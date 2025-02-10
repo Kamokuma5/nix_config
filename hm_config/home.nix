@@ -32,6 +32,8 @@ in
       fastfetch
       btop
       yazi
+      tree
+      bat
 
       # Apps
       vesktop
