@@ -35,6 +35,8 @@ in
       yazi
       tree
       bat
+      powertop
+      lazydocker
 
       # Apps
       vesktop
