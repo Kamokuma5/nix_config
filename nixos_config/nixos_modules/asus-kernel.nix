@@ -91,12 +91,14 @@
     in
     pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor linux_g14);
 
-  # ASUS Specific Software
   services = {
     supergfxd.enable = true;
     asusd = {
       enable = true;
       enableUserService = true;
     };
+
+    # Dependency of asusd
+    power-profiles-daemon.enable = true;
   };
 }
