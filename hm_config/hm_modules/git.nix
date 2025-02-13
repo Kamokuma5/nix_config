@@ -8,5 +8,11 @@
   extraConfig = {
     init.defaultBranch = "main";
     credential.helper = "cache";
+    checkout.defaultRemote = "origin";
+    color.ui = true;
+    push = {
+      default = "simple";
+      autoSetupRemote = true;
+    };
   };
 }
