@@ -9,6 +9,7 @@ in
     ./hm_modules/zsh.nix
     ./hm_modules/foot.nix
     ./hm_modules/fastfetch.nix
+    ./hm_modules/mime.nix
   ];
 
   programs = {
