@@ -21,6 +21,9 @@ in {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [
+    "preempt=full"
+  ];
 
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
