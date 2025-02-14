@@ -3,22 +3,20 @@
 
   inputs = {
     hyprland.url = "github:hyprwm/Hyprland";
-    nixpkgs-bleeding-edge.url = "github:merrkry/nixpkgs/rog-control-center-fix";
+    nixpkgs_unstable.url = "/home/duck/nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-bleeding-edge, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs_unstable, ... }@inputs:
   let
     inherit (self) outputs;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    # overlays = import ./overlays { inherit inputs; };
-    
+  in {    
     nixosConfigurations.GA403UI = nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs;
         inherit outputs;
-        pkgs-bleeding-edge = import nixpkgs-bleeding-edge {
+        pkgs_unstable = import nixpkgs_unstable {
           # Refer to the `system` parameter from
           # the outer scope recursively
           inherit system;

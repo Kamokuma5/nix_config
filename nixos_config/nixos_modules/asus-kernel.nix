@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, inputs, outputs, pkgs_unstable, ... }:
 
 {
   # ASUS G14 Patched Kernel based off of Arch Linux Kernel
@@ -92,10 +87,12 @@
     pkgs.recurseIntoAttrs (pkgs.linuxPackagesFor linux_g14);
 
   services = {
+    # ASUS Specific Software
     supergfxd.enable = true;
     asusd = {
       enable = true;
       enableUserService = true;
+      package = pkgs_unstable.asusctl;
     };
 
     # Dependency of asusd

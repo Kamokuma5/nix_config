@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, pkgs-bleeding-edge, ... }:
+{ config, pkgs, lib, inputs, outputs, pkgs_unstable, ... }:
 
 let
   host_name = "ga403ui";
@@ -15,10 +15,6 @@ in {
     ../../nixos_modules/docker.nix
     ../../nixos_modules/ollama.nix
   ];
-
-  # nixpkgs.overlays = [
-  #   outputs.overlays.modifications
-  # ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -116,7 +112,6 @@ in {
   environment.systemPackages = [
     pkgs.git
     pkgs.home-manager
-    pkgs-bleeding-edge.asusctl
   ];
 
   fonts.packages = with pkgs; [
