@@ -346,22 +346,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-bleeding-edge": {
-      "locked": {
-        "lastModified": 1738975230,
-        "narHash": "sha256-jN+8dW08fM4ciSoBmSdUR5+toH7+CaZW9nKngqcAuts=",
-        "owner": "merrkry",
-        "repo": "nixpkgs",
-        "rev": "d8646f1a35eff90922edf84a532c63e3fca0ad64",
-        "type": "github"
-      },
-      "original": {
-        "owner": "merrkry",
-        "ref": "rog-control-center-fix",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 0,
@@ -372,6 +356,22 @@
       "original": {
         "id": "nixpkgs",
         "type": "indirect"
+      }
+    },
+    "nixpkgs_unstable": {
+      "locked": {
+        "lastModified": 1739583482,
+        "narHash": "sha256-U85qhUBCCLYsAtYLY82AMdU+tH2pGzW7inUDhE6qVRI=",
+        "owner": "kamokuma5",
+        "repo": "nixpkgs",
+        "rev": "325132d6f2e2cbbb46a5224d03246d38fb9318b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kamokuma5",
+        "ref": "personal_mods",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "pre-commit-hooks": {
@@ -401,7 +401,7 @@
       "inputs": {
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-bleeding-edge": "nixpkgs-bleeding-edge"
+        "nixpkgs_unstable": "nixpkgs_unstable"
       }
     },
     "systems": {
