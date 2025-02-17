@@ -14,6 +14,7 @@ in {
     ../../nixos_modules/de_hyprland.nix
     ../../nixos_modules/docker.nix
     ../../nixos_modules/ollama.nix
+    ../../nixos_modules/power_mgmt/power_mgmt.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
