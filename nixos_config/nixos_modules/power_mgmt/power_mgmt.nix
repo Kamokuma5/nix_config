@@ -20,6 +20,7 @@
       coreutils
       gawk
       sudo
+      pciutils
     ];
     script = (builtins.readFile ./init.sh);
   };
