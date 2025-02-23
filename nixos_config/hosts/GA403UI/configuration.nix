@@ -22,8 +22,13 @@ in {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # https://wiki.cachyos.org/configuration/general_system_tweaks/#enable-rcu-lazy
+  # https://discourse.ubuntu.com/t/fine-tuning-the-ubuntu-24-04-kernel-for-low-latency-throughput-and-power-efficiency/44834
   boot.kernelParams = [
-    "preempt=full"
+    "preempt=lazy"
+    "rcu_nocbs=all" # RCUs will occur in kthreads instead of softirq context. Less interrupts = more idle time = better battery
+    "rcutree.enable_rcu_lazy=1" # Defer RCU cleanup. Less kthread CPU time = less CPU wakeups when idling = better battery
   ];
 
   # Enable Flakes
