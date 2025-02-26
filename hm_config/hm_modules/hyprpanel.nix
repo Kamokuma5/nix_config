@@ -31,7 +31,7 @@ in
     "theme.font.name" = "CaskaydiaCove Nerd Font";
   };
   settings = {
-    bar.autoHide = "fullscreen";
+    bar.autoHide = "single-window";
     notifications.position = "top";
     #bar.windowtitle.leftClick = "'pkill rofi||ags -t overview'";
     theme.bar.buttons.workspaces.spacing = "0.5";
