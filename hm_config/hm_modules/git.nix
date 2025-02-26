@@ -1,18 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
+
 {
-  enable = true;
-
-  userEmail = "kamokuma5@gmail.com";
-  userName = "Kamo Kuma";
-
-  extraConfig = {
-    init.defaultBranch = "main";
-    credential.helper = "cache";
-    checkout.defaultRemote = "origin";
-    color.ui = true;
-    push = {
-      default = "simple";
-      autoSetupRemote = true;
+  home.file = {
+    ".config/git/config" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/duck/nix_config/hm_config/dots/.gitconfig";
     };
   };
 }

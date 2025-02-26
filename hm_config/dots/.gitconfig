@@ -1,0 +1,56 @@
+[user]
+	email = "kamokuma5@gmail.com"
+	name = "Kamo Kuma"
+
+[credential]
+	helper = "cache"
+
+[init]
+	defaultBranch = "main"
+
+[checkout]
+	defaultRemote = "origin"
+
+[color]
+	ui = true
+
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[help]
+    autocorrect = prompt
+
+[commit]
+    verbose = true
+
+[gpg]
+	format = "openpgp"
+
+[gpg "openpgp"]
+	program = "gpg"
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[push]
+	default = "simple"
+	autoSetupRemote = true
+    followTags = true
+
+[merge]
+    # conflictstyle = diff3
+    conflictstyle = zdiff3 

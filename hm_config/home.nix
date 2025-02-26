@@ -7,13 +7,13 @@ in
     inputs.hyprpanel.homeManagerModules.hyprpanel
     ./hm_modules/hyprland.nix
     ./hm_modules/zsh.nix
+    ./hm_modules/git.nix 
     ./hm_modules/foot.nix
     ./hm_modules/fastfetch.nix
     ./hm_modules/mime.nix
   ];
 
   programs = {
-    git = (import ./hm_modules/git.nix { inherit pkgs; });
     hyprpanel = (import ./hm_modules/hyprpanel.nix { inherit pkgs nix_secrets; });
   };
 
