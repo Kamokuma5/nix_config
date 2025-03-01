@@ -126,7 +126,7 @@ in {
     pkgs.home-manager
   ];
 
-  fonts.packages = with pkgs; [
+  fonts.packages = with pkgs_unstable; [
     nerd-fonts.caskaydia-cove
   ];
 
