@@ -3,7 +3,8 @@
 
   inputs = {
     hyprland.url = "github:hyprwm/Hyprland";
-    nixpkgs_unstable.url = "github:kamokuma5/nixpkgs/personal_mods";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs_unstable.url = "github:nixos/nixpkgs/master";
   };
 
   outputs = { self, nixpkgs, nixpkgs_unstable, ... }@inputs:
