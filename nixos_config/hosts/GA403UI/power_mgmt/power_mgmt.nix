@@ -36,21 +36,38 @@ in
     script = (builtins.readFile ./init.sh);
   };
 
-  
-  services.udev.path = with pkgs; [ 
-    coreutils
-    gawk
-    sudo
-  ];
+  # This service runs on resume
+  systemd.services.power_mgmt_resume = {
+    enable = true;
+    wantedBy = [ "suspend.target" ];
+    serviceConfig = {
+      User = "root";
+      Group = "root";
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    path = with pkgs; [ 
+      coreutils
+      supergfxctl
+    ];
+    script = (builtins.readFile ./resume.sh);
+  };
 
   # Trigger these scripts when power supply state changes
-  services.udev.packages = lib.singleton (pkgs.writeTextFile
-    { name = "power_mgmt_rules";
-      text = ''
-        SUBSYSTEM=="power_supply", ATTR{online}=="1", ATTR{type}=="Mains", RUN+="${ac_pkg}/bin/ac.sh"
-        SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="${batt_pkg}/bin/battery.sh"
-      '';
-      destination = "/etc/udev/rules.d/65-power_mgmt.rules";
-    }
-  );
+  services.udev = {
+    packages = lib.singleton (pkgs.writeTextFile
+      { name = "power_mgmt_rules";
+        text = ''
+          SUBSYSTEM=="power_supply", ATTR{online}=="1", ATTR{type}=="Mains", RUN+="${ac_pkg}/bin/ac.sh"
+          SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="${batt_pkg}/bin/battery.sh"
+        '';
+        destination = "/etc/udev/rules.d/99-power_mgmt.rules";
+      }
+    );
+    path = with pkgs; [ 
+      coreutils
+      gawk
+      sudo
+    ];
+  };
 }
