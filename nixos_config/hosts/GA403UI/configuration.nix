@@ -7,14 +7,15 @@ let
 in {
   imports =
   [
+    ./hardware-configuration.nix
+    ./power_mgmt/power_mgmt.nix
+    ./asus_settings.nix
     ../../nixos_modules/asus-kernel.nix
     ../../nixos_modules/nvidia.nix
-    ./hardware-configuration.nix
     ../../nixos_modules/de_kde.nix
     ../../nixos_modules/de_hyprland.nix
     ../../nixos_modules/docker.nix
     ../../nixos_modules/ollama.nix
-    ../../nixos_modules/power_mgmt/power_mgmt.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
