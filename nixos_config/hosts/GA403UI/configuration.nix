@@ -70,6 +70,11 @@ in {
   # Enable CUPS to print documents.
   services.printing.enable = false;
 
+  # Display
+  services.displayManager.sddm.enable = true;
+  services.xserver.enable = false;
+  services.displayManager.sddm.wayland.enable = true;
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;

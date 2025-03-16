@@ -1,5 +1,8 @@
 { config, pkgs, lib, inputs, outputs, pkgs_unstable, ... }:
 
+let
+  isKDEInstalled = config.services.desktopManager.plasma6.enable;
+in
 {
   # ASUS G14 Patched Kernel based off of Arch Linux Kernel
   boot.kernelPackages =
@@ -101,4 +104,10 @@
     # Dependency of asusd
     power-profiles-daemon.enable = true;
   };
+
+  # Install plasmoid if KDE is also installed.
+  environment.systemPackages = with pkgs;
+    builtins.filter (pkg: pkg != null) ([
+      (if isKDEInstalled then supergfxctl-plasmoid else null)
+    ]);
 }
