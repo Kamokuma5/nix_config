@@ -17,10 +17,10 @@
 
   home.file = {
     ".config/hypr/hyprland.conf" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/duck/nix_config/hm_config/dots/hyprland.conf";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix_config/hm_config/dots/hyprland.conf";
     };
     ".config/hypr/hypridle.conf" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/duck/nix_config/hm_config/dots/hypridle.conf";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix_config/hm_config/dots/hypridle.conf";
     };
   };
 }

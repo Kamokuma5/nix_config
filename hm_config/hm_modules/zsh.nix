@@ -7,7 +7,7 @@
 
   home.file = {
     ".zshrc" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/duck/nix_config/hm_config/dots/.zshrc";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix_config/hm_config/dots/.zshrc";
     };
     "zsh-autosuggestions" = {
       source = builtins.fetchGit {
@@ -22,7 +22,7 @@
       };
     };
     ".p10k.zsh" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/duck/nix_config/hm_config/dots/.p10k.zsh";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix_config/hm_config/dots/.p10k.zsh";
     };
   };
 }

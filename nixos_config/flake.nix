@@ -26,5 +26,18 @@
         ./hosts/GA403UI/configuration.nix
       ];
     };
+    nixosConfigurations.fishtank = nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs;
+        inherit outputs;
+        pkgs_unstable = import nixpkgs_unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+      modules = [
+        ./hosts/fishtank/configuration.nix
+      ];
+    };
   };
 }
