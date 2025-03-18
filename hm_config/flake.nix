@@ -3,10 +3,9 @@
 
   inputs = {
     # Not in repo. If you make change to this repo, it might not make it to the nix store.
-    nix_secrets = {
-      url = "path:/home/duck/nix_secrets/";
-      flake = false;
-    };
+    # nix_secrets = {
+    #  url = "git+ssh://git@github.com/kamokuma5/nix_secrets?ref=main";
+    # };
 
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
@@ -38,6 +37,7 @@
           overlays = [
             inputs.hyprpanel.overlay
           ];
+          config.allowUnfree = true;
         };
         
         extraSpecialArgs = {
@@ -46,7 +46,25 @@
         };
   
         modules = [ 
-          ./home.nix
+          ./home_duck.nix
+        ];
+      };
+      "bear" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.hyprpanel.overlay
+          ];
+          config.allowUnfree = true;
+        };
+        
+        extraSpecialArgs = {
+          inherit system;
+          inherit inputs;
+        };
+
+        modules = [
+          ./home_bear.nix
         ];
       };
     };

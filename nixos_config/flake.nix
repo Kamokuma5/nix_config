@@ -3,11 +3,15 @@
 
   inputs = {
     hyprland.url = "github:hyprwm/Hyprland";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs_unstable.url = "github:nixos/nixpkgs/master";
+
+    # TODO: Temporary fix for Mesa drivers
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs_unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs_unstable.url = "github:r-ryantm/nixpkgs/auto-update/driversi686Linux.amdvlk";
   };
 
-  outputs = { self, nixpkgs, nixpkgs_unstable, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs_unstable, chaotic, ... }@inputs:
   let
     inherit (self) outputs;
     system = "x86_64-linux";

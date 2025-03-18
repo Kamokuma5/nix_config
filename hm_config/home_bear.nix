@@ -1,10 +1,10 @@
 { config, pkgs, inputs, ... }:
 let
-  # nix_secrets = import "${inputs.nix_secrets}/secrets.nix";
+  nix_secrets = import "${inputs.nix_secrets}/secrets.nix";
 in
 {
   imports = [
-    # inputs.hyprpanel.homeManagerModules.hyprpanel
+    inputs.hyprpanel.homeManagerModules.hyprpanel
     ./hm_modules/hyprland.nix
     ./hm_modules/zsh.nix
     ./hm_modules/git.nix 
@@ -14,7 +14,7 @@ in
   ];
 
   programs = {
-    #hyprpanel = (import ./hm_modules/hyprpanel.nix { inherit pkgs nix_secrets; });
+    # hyprpanel = (import ./hm_modules/hyprpanel.nix { inherit pkgs nix_secrets; });
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -35,16 +35,20 @@ in
       yazi
       tree
       bat
-      powertop
       lazydocker
 
       # Apps
       vesktop
+      discord
       vscode
       youtube-music
       microsoft-edge
       mpv
       inputs.zen-browser.packages."${system}".twilight
+
+      # Hardware utils
+      alsa-scarlett-gui
+      vulkan-tools
       
       # LLMs
       #nvidia-container-toolkit

@@ -4,12 +4,14 @@ let
   host_name = "fishtank";
   user_name = "bear";
   user_locale = "en_US.UTF-8";
-in {
+in 
+{
   imports =
   [
     ./hardware-configuration.nix
     ../../nixos_modules/de_kde.nix
     ../../nixos_modules/de_hyprland.nix
+    ../../nixos_modules/gaming.nix
 #     ../../nixos_modules/docker.nix
 #     ../../nixos_modules/ollama.nix
   ];
@@ -21,7 +23,7 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_testing;
 
   # Kernel tweaks
   boot.kernelParams = [
@@ -121,13 +123,28 @@ in {
   services.xserver.enable = false;
 
   # GPU Settings
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics = {
     enable = true;
-    enable32Bit = true;
     extraPackages = with pkgs_unstable; [
-      amdvlk
+      mesa
+      # amdvlk
     ];
+
+    enable32Bit = true;
+    # extraPackages32 = with pkgs_unstable; [
+    #   driversi686Linux.amdvlk
+    # ];
   };
+
+  hardware.firmware = with pkgs_unstable; [
+    (linux-firmware.overrideAttrs (old: {
+      src = builtins.fetchGit {
+        url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git";
+      };
+    }))
+  ];
 
   # Default programs for all configs
   programs.firefox.enable = true;
