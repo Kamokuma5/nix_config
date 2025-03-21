@@ -14,7 +14,7 @@ in
   ];
 
   programs = {
-    # hyprpanel = (import ./hm_modules/hyprpanel.nix { inherit pkgs nix_secrets; });
+    hyprpanel = (import ./hm_modules/hyprpanel.nix { inherit pkgs nix_secrets; });
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -39,7 +39,7 @@ in
 
       # Apps
       vesktop
-      discord
+      discord-canary
       vscode
       youtube-music
       microsoft-edge

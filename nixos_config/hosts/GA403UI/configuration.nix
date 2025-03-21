@@ -70,11 +70,6 @@ in {
   # Enable CUPS to print documents.
   services.printing.enable = false;
 
-  # Display
-  services.displayManager.sddm.enable = true;
-  services.xserver.enable = false;
-  services.displayManager.sddm.wayland.enable = true;
-
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -120,9 +115,12 @@ in {
   # Set default shell to ZSH
   programs.zsh.enable = true;
 
-  # Enable automatic login for the user.
+  # Display settings
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
   services.displayManager.autoLogin.enable = false;
   services.displayManager.autoLogin.user = "${user_name}";
+  services.xserver.enable = false;
 
   # Default programs for all configs
   programs.firefox.enable = true;

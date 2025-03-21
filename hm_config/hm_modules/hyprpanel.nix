@@ -11,7 +11,7 @@ in
       "0" = {
         left = ["dashboard" "workspaces"];
         middle = ["clock"];
-        right = ["systray" "network" "bluetooth" "volume" "battery" "notifications" "hypridle"];
+        right = ["systray" "network" "bluetooth" "microphone" "volume" "notifications" "hypridle"];
       };
     };
   };
@@ -31,7 +31,7 @@ in
     "theme.font.name" = "CaskaydiaCove Nerd Font";
   };
   settings = {
-    bar.autoHide = "single-window";
+    bar.autoHide = "fullscreen";
     notifications.position = "top";
     #bar.windowtitle.leftClick = "'pkill rofi||ags -t overview'";
     theme.bar.buttons.workspaces.spacing = "0.5";
@@ -125,5 +125,12 @@ in
     menus.dashboard.directories.enabled = false;
     menus.dashboard.stats.enable_gpu = true;
     theme.bar.transparent = false;
+    theme.bar.buttons.modules.microphone.enableBorder = false;
+    bar.customModules.microphone.label = false;
+    theme.bar.buttons.modules.microphone.spacing = "0.5em";
+    bar.customModules.microphone.leftClick = "/home/bear/nix_config/hm_config/mic_mute/mic_mute.sh";
+    bar.customModules.microphone.mutedIcon = "󰍭";
+    bar.customModules.microphone.unmutedIcon = "󰍬";
+    bar.customModules.microphone.rightClick = "menu:audio";
   };
 }

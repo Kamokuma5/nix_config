@@ -44,16 +44,13 @@
       "locked": {
         "lastModified": 1742229917,
         "narHash": "sha256-ldvWOI1F90HBTvJBkF/09d8GLgWnIPlKpkNYotmu2wY=",
-        "owner": "chaotic-cx",
-        "repo": "nyx",
+        "path": "/nix/store/hmww2xjqxyk7lhy8hx10i4sfvfyw1s4m-source",
         "rev": "5104a4c520e33bf59468875ab58d9ad37431a5bb",
-        "type": "github"
+        "type": "path"
       },
       "original": {
-        "owner": "chaotic-cx",
-        "ref": "nyxpkgs-unstable",
-        "repo": "nyx",
-        "type": "github"
+        "id": "chaotic",
+        "type": "indirect"
       }
     },
     "fenix": {

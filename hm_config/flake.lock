@@ -85,6 +85,23 @@
         "type": "github"
       }
     },
+    "nix_secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742168266,
+        "narHash": "sha256-Fx58a2Gzt/t4c8LElOx4yLvcVCVW2fu8MEWIY/pAPH4=",
+        "ref": "main",
+        "rev": "09be34c18fd0e9b9e3a4b165886f79b1adcb7bb2",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/kamokuma5/nix_secrets"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@github.com/kamokuma5/nix_secrets"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1742069588,
@@ -105,6 +122,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprpanel": "hyprpanel",
+        "nix_secrets": "nix_secrets",
         "nixpkgs": "nixpkgs",
         "zen-browser": "zen-browser"
       }

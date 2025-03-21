@@ -3,9 +3,10 @@
 
   inputs = {
     # Not in repo. If you make change to this repo, it might not make it to the nix store.
-    # nix_secrets = {
-    #  url = "git+ssh://git@github.com/kamokuma5/nix_secrets?ref=main";
-    # };
+    nix_secrets = {
+     url = "git+ssh://git@github.com/kamokuma5/nix_secrets?ref=main";
+     flake = false;
+    };
 
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 

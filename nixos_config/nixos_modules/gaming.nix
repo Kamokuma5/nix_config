@@ -25,5 +25,6 @@
     pkgs.bottles
     pkgs_unstable.amdgpu_top
     pkgs_unstable.mesa-demos
+    pkgs.lutris
   ];
 }
