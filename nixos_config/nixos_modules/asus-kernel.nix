@@ -13,41 +13,30 @@ in
         buildLinux (
           args
           // rec {
-            version = "6.13.5-arch1";
+            version = "6.14.5-arch1";
             modDirVersion = version;
             kernalPatchRev = "5f7c2f39a153be2ca29057e0a2d6c5651edecddb";
 
             patch_dir = fetchgit {
               url = "https://aur.archlinux.org/linux-g14.git";
-              rev = "1fa39383c7c941f3967603154c1dc3f79882699c";
-              hash = "sha256-k1Gh6Zp8P1NXx5BrdZlzhbmwzFgVEv2p6/yCzlYZBuU=";
+              rev = "ad71f536b2be541b43417fcd87b2ff6f57fcfa89";
+              hash = "sha256-kPaOmzS2L9ZXRhxWKgXlNF1dZkcrr/3IGxa+Dx3hHu0=";
             };
 
             src = fetchzip {
               url = "https://github.com/archlinux/linux/archive/refs/tags/v${version}.tar.gz";
-              hash = "sha256-Fmfkb7HeLrhqQ94fenaaxmSmBEs2mQFaJou8XywYvcc=";
+              hash = "sha256-pWs/vkMvxvzsqC+ezXGER1kqQzkJAxCIDcL6dyU4jcM=";
             };
             kernelPatches =
-              with {
-                patch_series = fetchurl {
-                  url = "https://gitlab.com/asus-linux/fedora-kernel/-/raw/${kernalPatchRev}/asus-patch-series.patch";
-                  hash = "sha256-hlJFN8xMDUvF9KcVGc96AkOCqYc5r2pMQ3Ps3PdkJYU=";
-                };
-              };
-
               [
                 {
-                  name = "0000-asus-patch-series.patch";
-                  patch = "${patch_series}";
+                  name = "asus-patch-series.patch";
+                  patch = "${patch_dir}/asus-patch-series.patch";
                 }
                 {
                   name = "0001-acpi-proc-idle-skip-dummy-wait.patch";
                   patch = "${patch_dir}/0001-acpi-proc-idle-skip-dummy-wait.patch";
                 }
-                # {
-                #   name = "0002-mt76_-mt7921_-Disable-powersave-features-by-default.patch";
-                #   patch = "${patch_dir}/0002-mt76_-mt7921_-Disable-powersave-features-by-default.patch";
-                # }
                 {
                   name = "0004-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch";
                   patch = "${patch_dir}/0004-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch";
@@ -56,10 +45,6 @@ in
                   name = "0005-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch";
                   patch = "${patch_dir}/0005-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch";
                 }
-                # {
-                #   name = "0006-mediatek-pci-reset.patch";
-                #   patch = "${patch_dir}/0006-mediatek-pci-reset.patch";
-                # }
                 {
                   name = "0007-workaround_hardware_decoding_amdgpu.patch";
                   patch = "${patch_dir}/0007-workaround_hardware_decoding_amdgpu.patch";
