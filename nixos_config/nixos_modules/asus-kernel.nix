@@ -17,55 +17,31 @@ in
             modDirVersion = version;
             kernalPatchRev = "5f7c2f39a153be2ca29057e0a2d6c5651edecddb";
 
+            # Fetch the Arch kernel source
+            src = fetchzip {
+              url = "https://github.com/archlinux/linux/archive/refs/tags/v${version}.tar.gz";
+              hash = "sha256-pWs/vkMvxvzsqC+ezXGER1kqQzkJAxCIDcL6dyU4jcM=";
+            };
+
+            # Fetch the patches and sort them from [A-Z] then [0-9]
+            # This should place 'asus-patch-series.patch' first
             patch_dir = fetchgit {
               url = "https://aur.archlinux.org/linux-g14.git";
               rev = "ad71f536b2be541b43417fcd87b2ff6f57fcfa89";
               hash = "sha256-kPaOmzS2L9ZXRhxWKgXlNF1dZkcrr/3IGxa+Dx3hHu0=";
             };
 
-            src = fetchzip {
-              url = "https://github.com/archlinux/linux/archive/refs/tags/v${version}.tar.gz";
-              hash = "sha256-pWs/vkMvxvzsqC+ezXGER1kqQzkJAxCIDcL6dyU4jcM=";
-            };
-            kernelPatches =
-              [
-                {
-                  name = "asus-patch-series.patch";
-                  patch = "${patch_dir}/asus-patch-series.patch";
-                }
-                {
-                  name = "0001-acpi-proc-idle-skip-dummy-wait.patch";
-                  patch = "${patch_dir}/0001-acpi-proc-idle-skip-dummy-wait.patch";
-                }
-                {
-                  name = "0004-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch";
-                  patch = "${patch_dir}/0004-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch";
-                }
-                {
-                  name = "0005-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch";
-                  patch = "${patch_dir}/0005-ACPI-resource-Skip-IRQ-override-on-ASUS-TUF-Gaming-A.patch";
-                }
-                {
-                  name = "0007-workaround_hardware_decoding_amdgpu.patch";
-                  patch = "${patch_dir}/0007-workaround_hardware_decoding_amdgpu.patch";
-                }
-                {
-                  name = "0008-amd-tablet-sfh.patch";
-                  patch = "${patch_dir}/0008-amd-tablet-sfh.patch";
-                }
-                {
-                  name = "0009-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch";
-                  patch = "${patch_dir}/0009-asus-nb-wmi-Add-tablet_mode_sw-lid-flip.patch";
-                }
-                {
-                  name = "0010-asus-nb-wmi-fix-tablet_mode_sw_int.patch";
-                  patch = "${patch_dir}/0010-asus-nb-wmi-fix-tablet_mode_sw_int.patch";
-                }
-                {
-                  name = "0011-amdgpu-adjust_plane_init_off_by_one.patch";
-                  patch = "${patch_dir}/0011-amdgpu-adjust_plane_init_off_by_one.patch";
-                }
-              ];
+            isNumeric = name: builtins.match "^([0-9]+).*\\.patch$" name != null;
+
+            patch_files = builtins.filter (name: builtins.match ".*\\.patch" name != null) (builtins.attrNames patch_dir);
+            numericPatches = builtins.sort (a: b: builtins.lessThan a b) (builtins.filter isNumeric patch_files);
+            alphabeticPatches = builtins.sort (a: b: builtins.lessThan a b) (builtins.filter (name: !isNumeric name) patch_files);
+            sortedFiles = alphabeticPatches ++ numericPatches;
+
+            kernelPatches = map (name: {
+              name = name;
+              patch = "${patch_dir}/${name}";
+            }) sortedFiles;
 
             defconfig = "${patch_dir}/config";
           }
