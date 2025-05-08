@@ -5,16 +5,6 @@ in
 {
   enable = true;
   overwrite.enable = true;
-  theme = "catppuccin_mocha";
-  layout = {
-    "bar.layouts" = {
-      "0" = {
-        left = ["dashboard" "workspaces"];
-        middle = ["clock"];
-        right = ["systray" "network" "bluetooth" "volume" "battery" "notifications" "hypridle"];
-      };
-    };
-  };
   override = {
     "theme.bar.buttons.workspaces.hover" = "#7f849c";
     "theme.bar.buttons.workspaces.active" = "#f5c2e7";
@@ -31,7 +21,17 @@ in
     "theme.font.name" = "CaskaydiaCove Nerd Font";
   };
   settings = {
-    bar.autoHide = "single-window";
+    layout = {
+      "bar.layouts" = {
+        "0" = {
+          left = ["dashboard" "workspaces"];
+          middle = ["clock"];
+          right = ["systray" "network" "bluetooth" "volume" "battery" "notifications" "hypridle"];
+        };
+      };
+    };
+    theme.name = "catppuccin_mocha";
+    bar.autoHide = "never";
     notifications.position = "top";
     #bar.windowtitle.leftClick = "'pkill rofi||ags -t overview'";
     theme.bar.buttons.workspaces.spacing = "0.5";
