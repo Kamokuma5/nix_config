@@ -25,25 +25,32 @@ in
 
             # Fetch the patches and sort them from [A-Z] then [0-9]
             # This should place 'asus-patch-series.patch' first
-            patch_dir = fetchgit {
+            patchDir = fetchgit {
               url = "https://aur.archlinux.org/linux-g14.git";
               rev = "ad71f536b2be541b43417fcd87b2ff6f57fcfa89";
               hash = "sha256-kPaOmzS2L9ZXRhxWKgXlNF1dZkcrr/3IGxa+Dx3hHu0=";
             };
 
-            isNumeric = name: builtins.match "^([0-9]+).*\\.patch$" name != null;
 
-            patch_files = builtins.filter (name: builtins.match ".*\\.patch" name != null) (builtins.attrNames patch_dir);
-            numericPatches = builtins.sort (a: b: builtins.lessThan a b) (builtins.filter isNumeric patch_files);
-            alphabeticPatches = builtins.sort (a: b: builtins.lessThan a b) (builtins.filter (name: !isNumeric name) patch_files);
-            sortedFiles = alphabeticPatches ++ numericPatches;
+            kernelPatches = 
+            let
+              patchFiles = builtins.attrNames (builtins.readDir patchDir);
 
-            kernelPatches = map (name: {
-              name = name;
-              patch = "${patch_dir}/${name}";
-            }) sortedFiles;
+              # Filter only `.patch` files
+              isPatchFile = name: builtins.match ".*\\.patch" name != null;
+              patchFilesFiltered = builtins.filter isPatchFile patchFiles;
 
-            defconfig = "${patch_dir}/config";
+              # Separate non-numeric and numeric patches
+              isNumeric = name: builtins.match "[0-9]+.*\\.patch" name != null;
+              numericPatches = builtins.sort builtins.lessThan (builtins.filter isNumeric patchFilesFiltered);
+              nonNumericPatches = builtins.filter (name: !isNumeric name) patchFilesFiltered;
+
+              # Combine lists: non-numeric first, then numeric
+              sortedPatches = nonNumericPatches ++ numericPatches;
+            in
+            map (file: { name = file; patch = "${patchDir}/${file}"; }) sortedPatches;
+
+            defconfig = "${patchDir}/config";
           }
           // (args.argsOverride or { })
         );
