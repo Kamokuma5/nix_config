@@ -26,9 +26,10 @@
         change_platform_profile_on_ac: true,
         profile_quiet_epp: Power,
         profile_balanced_epp: BalancePower,
+        profile_custom_epp: Performance,
         profile_performance_epp: Performance,
         ac_profile_tunings: {
-            Quiet: (
+            LowPower: (
                 enabled: true,
                 group: {
                     PptPl1Spl: 15,
@@ -60,84 +61,85 @@
         },
     )
     '';
-    mode = "0777";
+    mode = "0644";
   };
 
-#   environment.etc."asusd/fan_curves.ron" = {
-#     text = ''
-#     (
-#         profiles: (
-#             balanced: [
-#                 (
-#                     fan: CPU,
-#                     pwm: (12, 43, 48, 58, 68, 94, 114, 140),
-#                     temp: (47, 62, 65, 68, 70, 72, 74, 76),
-#                     enabled: false,
-#                 ),
-#                 (
-#                     fan: GPU,
-#                     pwm: (28, 53, 66, 76, 86, 107, 135, 160),
-#                     temp: (47, 59, 62, 65, 67, 69, 71, 73),
-#                     enabled: false,
-#                 ),
-#                 (
-#                     fan: MID,
-#                     pwm: (2, 51, 58, 58, 94, 130, 188, 242),
-#                     temp: (47, 62, 65, 68, 70, 72, 74, 76),
-#                     enabled: false,
-#                 ),
-#             ],
-#             performance: [
-#                 (
-#                     fan: CPU,
-#                     pwm: (43, 48, 58, 94, 114, 130, 150, 186),
-#                     temp: (20, 64, 66, 68, 70, 72, 74, 76),
-#                     enabled: false,
-#                 ),
-#                 (
-#                     fan: GPU,
-#                     pwm: (53, 66, 76, 107, 135, 150, 170, 209),
-#                     temp: (20, 57, 60, 63, 66, 69, 72, 75),
-#                     enabled: false,
-#                 ),
-#                 (
-#                     fan: MID,
-#                     pwm: (51, 58, 58, 130, 188, 198, 237, 237),
-#                     temp: (20, 64, 66, 68, 70, 72, 74, 76),
-#                     enabled: false,
-#                 ),
-#             ],
-#             quiet: [
-#                 (
-#                     fan: CPU,
-#                     pwm: (12, 28, 43, 48, 58, 68, 94, 94),
-#                     temp: (43, 69, 70, 72, 74, 76, 78, 78),
-#                     enabled: false,
-#                 ),
-#                 (
-#                     fan: GPU,
-#                     pwm: (28, 38, 53, 66, 76, 86, 107, 107),
-#                     temp: (43, 67, 68, 70, 70, 70, 70, 70),
-#                     enabled: false,
-#                 ),
-#                 (
-#                     fan: MID,
-#                     pwm: (2, 5, 51, 58, 58, 127, 130, 130),
-#                     temp: (43, 69, 70, 72, 74, 76, 78, 78),
-#                     enabled: false,
-#                 ),
-#             ],
-#         ),
-#     )
-#     '';
-#   mode = "0777";
-# };
+  environment.etc."asusd/fan_curves.ron" = {
+    text = ''
+    (
+        profiles: (
+            balanced: [
+                (
+                    fan: CPU,
+                    pwm: (1, 2, 15, 77, 102, 252, 253, 254),
+                    temp: (1, 44, 45, 60, 70, 80, 94, 99),
+                    enabled: true,
+                ),
+                (
+                    fan: GPU,
+                    pwm: (1, 2, 15, 77, 102, 252, 253, 254),
+                    temp: (1, 44, 45, 60, 70, 80, 94, 99),
+                    enabled: true,
+                ),
+                (
+                    fan: MID,
+                    pwm: (1, 2, 15, 77, 102, 252, 253, 254),
+                    temp: (1, 44, 45, 60, 70, 80, 94, 99),
+                    enabled: true,
+                ),
+            ],
+            performance: [
+                (
+                    fan: CPU,
+                    pwm: (43, 48, 58, 94, 114, 130, 150, 186),
+                    temp: (20, 64, 66, 68, 70, 72, 74, 76),
+                    enabled: false,
+                ),
+                (
+                    fan: GPU,
+                    pwm: (53, 66, 76, 107, 135, 150, 170, 209),
+                    temp: (20, 57, 60, 63, 66, 69, 72, 75),
+                    enabled: false,
+                ),
+                (
+                    fan: MID,
+                    pwm: (51, 58, 58, 130, 188, 198, 237, 237),
+                    temp: (20, 64, 66, 68, 70, 72, 74, 76),
+                    enabled: false,
+                ),
+            ],
+            quiet: [
+                (
+                    fan: CPU,
+                    pwm: (1, 2, 15, 77, 102, 252, 253, 254),
+                    temp: (1, 44, 45, 60, 70, 80, 94, 99),
+                    enabled: true,
+                ),
+                (
+                    fan: GPU,
+                    pwm: (1, 2, 15, 77, 102, 252, 253, 254),
+                    temp: (1, 44, 45, 60, 70, 80, 94, 99),
+                    enabled: true,
+                ),
+                (
+                    fan: MID,
+                    pwm: (1, 2, 15, 77, 102, 252, 253, 254),
+                    temp: (1, 44, 45, 60, 70, 80, 94, 99),
+                    enabled: true,
+                ),
+            ],
+            custom: [],
+        ),
+    )
+    '';
+    mode = "0644";
+  };
 
   environment.etc."asusd/slash.ron" = {
     text = ''
     (
         enabled: false,
-        brightness: 0,
+        brightness: 255,
         display_interval: 0,
         display_mode: Bounce,
         show_on_boot: false,
@@ -145,9 +147,10 @@
         show_on_sleep: false,
         show_on_battery: false,
         show_battery_warning: false,
+        show_on_lid_closed: false,
     )
     '';
-    mode = "0777";
+    mode = "0644";
   };
 
   environment.etc."asusd/aura_19b6.ron" = {
@@ -220,6 +223,6 @@
         ),
     )
     '';
-    mode = "0777";
+    mode = "0644";
   };
 }
