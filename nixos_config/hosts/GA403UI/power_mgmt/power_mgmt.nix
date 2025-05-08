@@ -68,6 +68,7 @@ in
       coreutils
       gawk
       sudo
+      socat
     ];
   };
 }
