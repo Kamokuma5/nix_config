@@ -31,7 +31,7 @@ in
       zellij
       tmux
       fastfetch
-      btop
+      btop-rocm
       yazi
       tree
       bat
