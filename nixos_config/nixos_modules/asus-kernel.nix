@@ -13,22 +13,22 @@ in
         buildLinux (
           args
           // rec {
-            version = "6.14.5-arch1";
+            version = "6.14.6-arch1";
             modDirVersion = version;
             kernalPatchRev = "5f7c2f39a153be2ca29057e0a2d6c5651edecddb";
 
             # Fetch the Arch kernel source
             src = fetchzip {
               url = "https://github.com/archlinux/linux/archive/refs/tags/v${version}.tar.gz";
-              hash = "sha256-pWs/vkMvxvzsqC+ezXGER1kqQzkJAxCIDcL6dyU4jcM=";
+              hash = "sha256-TsOK1RwVshK/avtHHyLG4EltA7cAtvY56TDBmAwyZGI=";
             };
 
             # Fetch the patches and sort them from [A-Z] then [0-9]
             # This should place 'asus-patch-series.patch' first
             patchDir = fetchgit {
               url = "https://aur.archlinux.org/linux-g14.git";
-              rev = "ad71f536b2be541b43417fcd87b2ff6f57fcfa89";
-              hash = "sha256-kPaOmzS2L9ZXRhxWKgXlNF1dZkcrr/3IGxa+Dx3hHu0=";
+              rev = "052871fc82939866547f28542235fe6956bdcf86";
+              hash = "sha256-Ty3QzJr/0neJOF3nrTPMHuG9PHDZycVLXThyhV1ETYI=";
             };
 
 
