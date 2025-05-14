@@ -31,7 +31,7 @@ in
       };
     };
     theme.name = "catppuccin_mocha";
-    bar.autoHide = "never";
+    bar.autoHide = "fullscreen";
     notifications.position = "top";
     #bar.windowtitle.leftClick = "'pkill rofi||ags -t overview'";
     theme.bar.buttons.workspaces.spacing = "0.5";
