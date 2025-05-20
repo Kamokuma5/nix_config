@@ -2,9 +2,13 @@
   description = "A very basic flake";
 
   inputs = {
-    hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs_unstable.url = "github:nixos/nixpkgs/master";
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs_unstable, ... }@inputs:
