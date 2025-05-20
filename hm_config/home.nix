@@ -48,7 +48,6 @@ in
       
       # LLMs
       nvidia-container-toolkit
-      python311
     ];
 
     username = "duck";

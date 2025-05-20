@@ -1,18 +1,17 @@
-{ config, pkgs, lib, ... }:
-
+{ config, pkgs, lib, system, inputs, ... }:
 {
   home.packages = with pkgs; [
     brightnessctl         # screen brightness control
     hyprshot              # Screenshots
-    hyprpanel
-    networkmanagerapplet
     rofi-wayland
     rofi-bluetooth
     libnotify
-    # hyprnotify
     hypridle
     hyprlock
-    ags
+
+    # hyprpanel widget
+    hyprpanel
+    networkmanagerapplet
   ];
 
   home.file = {

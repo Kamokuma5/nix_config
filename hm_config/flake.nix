@@ -41,8 +41,7 @@
         };
         
         extraSpecialArgs = {
-          inherit system;
-          inherit inputs;
+          inherit system inputs;
         };
   
         modules = [ 
