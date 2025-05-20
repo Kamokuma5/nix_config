@@ -20,13 +20,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    fabric = {
+      url = "github:Fabric-Development/fabric";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    gray = {
+      url = "github:Fabric-Development/gray";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprpanel, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprpanel, fabric, gray, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
